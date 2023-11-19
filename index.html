@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Mi Empresa Meteorológica</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="./img/logo.svg">
+    <link rel="stylesheet" type="text/css" href="./css/coloring.css">
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <link rel="stylesheet" type="text/css" href="./css/txtformatting.css">
+    <link rel="stylesheet" type="text/css" href="./css/shadow.css">
+    <link rel="stylesheet" type="text/css" href="./css/loading.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body class="on">
+    <div class="loading" id="loading-box">
+        <div class="loading-item"><div class="loading-progress"></div></div>
+    </div>
+
+    <main class="main">
+        <div class="navbar">
+            <div class="container">
+                <div class="navbar-nav">
+                    <div class="navbar-brand">
+                        <span class="navbar-brand-txt"><a class="txt-bold type-1" href="/">Mi Empresa Meteorológica</a></span>
+                    </div>
+
+                    <span class="navbar-toggler" id="toggler"><i onclick="toggleNavbar(this)" class="fas fa-bars"></i></span>
+
+                    <div class="navs" id="navs">
+                        <div class="navs-item notbtn"><a href="#mision" class="txt-uppercase">Misión</a></div>
+                        <div class="navs-item notbtn"><a href="#contactar" class="txt-uppercase">Contactar</a></div>
+                        <div class="navs-item"><a href="login.php"><button class="btn txt-uppercase shadow-sm">Login</button></a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="jumbotron">
+            <div class="container">
+                <div class="jumbotron-items">
+                    <div class="jumbotron-item">
+                        <span class="jumbotron-t">¿Por qué Mi Empresa Meteorológica?</span>
+                        <p class="jumbotron-d">Nuestra empresa ofrece servicios meteorológicos avanzados utilizando tecnología de vanguardia. Obtén pronósticos precisos y soluciones personalizadas para tus necesidades.</p>
+                        <div class="jumbotron-buttons">
+                            <button class="btn" onclick="location.href='#features'">Características</button>
+                        </div>
+                    </div>
+                    <div class="jumbotron-item">
+                        <img src="./img/meteorologia.svg" alt="imagen">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <span class="scroll-down"><i class="fas fa-arrow-down"></i></span>
+    </main>
+
+    <div class="features-box">
+        <h1 class="features-t" id="features">Nuestros Servicios</h1>
+        <div class="container">
+            <div class="features">
+                <div class="feature">
+                    <img class="feature-img" src="./img/feature1.svg"></img>
+                    <div class="feature-info">
+                        <h2 class="feature-info-t">Pronóstico Meteorológico</h2>
+                        <p class="feature-info-d">Obtén pronósticos precisos y actualizados utilizando nuestra avanzada tecnología meteorológica.</p>
+                    </div>
+                </div>
+                <div class="feature">
+                    <img class="feature-img" src="./img/feature2.svg"></img>
+                    <div class="feature-info">
+                        <h2 class="feature-info-t">Integración con API Meteorológica</h2>
+                        <p class="feature-info-d">Nos conectamos a una API meteorológica para obtener información detallada y proporcionar datos en tiempo real.</p>
+                    </div>
+                </div>
+                <div class="feature">
+                    <img class="feature-img" src="./img/feature3.svg"></img>
+                    <div class="feature-info">
+                        <h2 class="feature-info-t">Asesoramiento Personalizado</h2>
+                        <p class="feature-info-d">Ofrecemos asesoramiento meteorológico personalizado para satisfacer tus necesidades específicas.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="features-box">
+        <h1 class="features-t" id="mision">Nuestra Misión</h1>
+        <div class="container">
+            <div class="features">
+                <div class="feature">
+                    <img class="feature-img" src="./img/conocimiento.svg"></img>
+                    <div class="feature-info">
+                        <h2 class="feature-info-t">Contribuir al conocimiento meteorológico</h2>
+                        <p class="feature-info-d">Trabajamos arduamente para proporcionar información precisa y valiosa que contribuya al entendimiento y predicción del clima.</p>
+                    </div>
+                </div>
+                <div class="feature">
+                    <img class="feature-img" src="./img/responsabilidad.svg"></img>
+                    <div class="feature-info">
+                        <h2 class="feature-info-t">Responsabilidad Ambiental</h2>
+                        <p class="feature-info-d">Nos comprometemos a operar de manera sostenible y a minimizar nuestro impacto en el medio ambiente.</p>
+                    </div>
+                </div>
+                <div class="feature">
+                    <img class="feature-img" src="./img/innovacion.svg"></img>
+                    <div class="feature-info">
+                        <h2 class="feature-info-t">Innovación Continua</h2>
+                        <p class="feature-info-d">Buscamos constantemente nuevas formas de mejorar y aplicar tecnologías innovadoras para avanzar en la meteorología.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <div class="contact-box">
+        <h1 class="contact-t" id="contactar">Contactar</h1>
+        <div class="container">
+            <div class="contact-form">
+                <form id="contact-form" action="procesar_formulario.php" method="post">
+                    <div class="form-group">
+                        <label for="companyName">Nombre de la Compañía:</label>
+                        <input type="text" class="form-control" id="companyName" name="companyName" placeholder="Ingrese el nombre de la compañía" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="location">Ubicación:</label>
+                        <input type="text" class="form-control" id="location" name="location" placeholder="Ingrese la ubicación" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactType">Tipo de Consulta:</label>
+                        <select class="form-control" id="contactType" name="contactType" required>
+                            <option value="consulta">Informacion</option>
+                            <option value="soporte">Soporte</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Mensaje:</label>
+                        <textarea class="form-control" id="message" name="message" rows="3" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
+                    <div class="form-group" id="success-message" style="display: none;">
+                        <div class="success-message-box">
+                            <div class="success-message">Formulario enviado correctamente.</div>
+                        </div>
+                    </div>
+                                       
+                </form>
+                <div id="response-message"></div>
+            </div>
+        </div>
+    </div>
+    
+
+
+    <div class="features-box">
+        <div class="container">
+            <div class="footer-items">
+                <div class="footer-item">
+                    <span>&copy; 2023 Desarrollado por Camilo Sanz - Todos los derechos reservados.</span>
+                </div>                
+            </div>
+        </div>
+    </div>
+    
+
+
+    <script type="text/javascript" src="./js/script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var form = document.getElementById("contact-form");
+    
+            form.addEventListener("submit", function(event) {
+                event.preventDefault();
+    
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "procesar_formulario.php", true);
+                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    
+                var formData = new URLSearchParams(new FormData(form));
+    
+                xhr.onload = function() {
+                    console.log(xhr.responseText);
+    
+                    var messageElement = document.getElementById("response-message");
+    
+                    // Verifica si la respuesta contiene la cadena "correctamente"
+                    if (xhr.responseText.toLowerCase().includes("correctamente")) {
+                        // Muestra el mensaje de éxito
+                        messageElement.innerHTML = "<div class='success-message'>Formulario enviado correctamente.</div>";
+                    } else {
+                        // Muestra un mensaje de error
+                        messageElement.innerHTML = "<div class='error-message'>Error al enviar el formulario.</div>";
+                    }
+    
+                    // Limpia el mensaje después de 3 segundos
+                    setTimeout(function() {
+                        messageElement.innerHTML = "";
+                    }, 3000);
+                };
+    
+                xhr.send(formData.toString());
+            });
+        });
+    </script>
+    
+    
+    </body>
+</html>

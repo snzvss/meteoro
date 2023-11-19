@@ -1,0 +1,198 @@
+<?php
+include 'conexion.php';
+
+// Verifica si la conexión a la base de datos es exitosa
+if (!$conn) {
+    $response = "Error de conexión a la base de datos.";
+    echo $response;
+}
+
+// Verifica la conexión
+if ($conn->connect_error) {
+    die("Conexión fallida: " . $conn->connect_error);
+}
+
+// Inicializa la variable de mensaje de error
+$error_message = "";
+
+// Procesa el formulario cuando se envía
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Recupera los datos del formulario
+    $correo = $_POST["username"];
+    $contrasena = $_POST["password"];
+
+    // Prepara y ejecuta la consulta SQL para obtener la información del usuario
+    $stmt = $conn->prepare("SELECT tipo_usuario, contrasena FROM usuarios WHERE correo = ?");
+    $stmt->bind_param("s", $correo);
+    $stmt->execute();
+    $stmt->bind_result($tipo_usuario, $hashed_password);
+    // Verifica si se encontró el usuario y la contraseña es correcta
+    if ($stmt->fetch() && password_verify($contrasena, $hashed_password)) {
+        // Contraseña correcta, inicia sesión o realiza otras acciones necesarias
+        // Redirige al usuario según su tipo
+        if ($tipo_usuario == "administrador" || $tipo_usuario == "usuario") {
+            session_start();
+            $_SESSION['usuario_autenticado'] = true;
+            $_SESSION['tipo_usuario'] = $tipo_usuario;
+            $_SESSION['usuario'] = $correo;
+            if ($tipo_usuario == "administrador") {
+                echo '<script>window.location="admin.php"</script>';
+            } elseif ($tipo_usuario == "usuario") {
+                echo '<script>window.location="inicio.php"</script>';
+            }
+            exit();
+        }
+    } else {
+        // Usuario o contraseña incorrectos
+        $error_message = "Usuario o contraseña incorrectos.";
+    }
+
+
+    // Cierra la declaración
+    $stmt->close();
+    $conn->close();
+}
+?>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Login - Mi Empresa Meteorológica</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="./img/logo.svg">
+    <link rel="stylesheet" type="text/css" href="./css/coloring.css">
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <link rel="stylesheet" type="text/css" href="./css/txtformatting.css">
+    <link rel="stylesheet" type="text/css" href="./css/shadow.css">
+    <link rel="stylesheet" type="text/css" href="./css/loading.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body class="on">
+
+    <div class="login-container">
+        <h1>
+            <img src="./img/login-svgrepo-com.svg" alt="Login Icon" class="login-icon">
+            Login
+        </h1>
+        <form method="post" action="login.php">
+            <label for="username">Correo:</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="password">Contraseña:</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="submit">Iniciar sesión</button>
+        </form>
+        
+        <?php
+        // Muestra mensajes de error si hay alguno
+        if (!empty($error_message)) {
+            echo '<p class="error-message">' . $error_message . '</p>';
+        }
+        ?>
+
+        <!-- Agrega un enlace o botón para dirigir a los usuarios a la página de registro -->
+        <p>¿No tienes una cuenta? <a href="register.php">Regístrate aquí</a></p>
+    </div>
+
+    <!-- Agrega tus scripts JS aquí -->
+    <style>
+        /* Agrega estos estilos en tu hoja de estilo personalizada (your-custom-login-styles.css) */
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .login-container {
+            background-color: var(--third-disabled);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .login-container h1 {
+            color: var(--secondary);
+            display: flex;
+            text-align: center;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: center;
+        }
+
+        .login-container form {
+            display: flex;
+            margin: 1px;
+            flex-direction: column;
+        }
+
+        .login-container label {
+            font-size: 18px;
+            font-weight: bold;
+            color: var(--secondary);
+            margin-bottom: 0px;
+        }
+
+        .login-container input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--secondary);
+            border-radius: 4px;
+            font-size: 16px;
+            margin-top: 5px;
+        }
+
+        .login-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: var(--third);
+            color: var(--secondary);
+            border: none;
+            border-radius: 4px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: 0.2s;
+            margin-top: 10px;
+        }
+
+        .login-container button:hover {
+            background-color: var(--third-disabled);
+        }
+
+        .login-container .error-message {
+            color: white;
+            background-color: red;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .login-container p {
+            color: var(--secondary);
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .login-container a {
+            color: var(--secondary);
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .login-container a:hover {
+            color: var(--o1);
+        }
+
+        .login-container h1 img {
+            width: 24px; /* Ajusta el tamaño del icono según tus preferencias */
+            margin-right: 8px; /* Espacio entre el icono y el texto "Login" */
+        }
+
+    </style>
+</body>
+</html>
