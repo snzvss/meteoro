@@ -27,10 +27,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["accion_usuarios"])) {
         $result = $conn->query($query);
 
         // Verifica si la consulta fue exitosa
-    if (!$result) {
-        die("Error en la consulta: " . $conn->error);
-    }
-
+        if (!$result) {
+            die("Error en la consulta: " . $conn->error);
+        }
 
         // Verifica si hay filas devueltas
         if ($result->num_rows > 0) {
@@ -78,7 +77,61 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["accion_mensajes"])) {
         }
     }
 }
+
+// Lógica para la búsqueda de usuarios
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["buscar_usuarios"])) {
+    $busqueda_usuarios = $_POST["busqueda_usuarios"];
+
+    // Agrega aquí la lógica para realizar la búsqueda en la base de datos
+    // Puedes ajustar la consulta según tus necesidades
+    $query = "SELECT id, nombre, correo FROM usuarios WHERE nombre LIKE '%$busqueda_usuarios%' OR correo LIKE '%$busqueda_usuarios%'";
+    $result = $conn->query($query);
+
+    // Verifica si la consulta fue exitosa
+    if (!$result) {
+        die("Error en la consulta de búsqueda: " . $conn->error);
+    }
+
+    // Verifica si hay filas devueltas
+    if ($result->num_rows > 0) {
+        $usuarios = $result->fetch_all(MYSQLI_ASSOC);
+    } else {
+        // No se encontraron usuarios que coincidan con la búsqueda
+        echo "No se encontraron usuarios que coincidan con la búsqueda.";
+    }
+
+    // Cierra el resultado
+    $result->close();
+}
+    // Lógica para la búsqueda de ciudades
+    if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["buscar_ciudades"])) {
+        $busqueda_ciudad = $_POST["busqueda_ciudad"];
+
+        // Agrega aquí la lógica para realizar la búsqueda en la base de datos
+        // Puedes ajustar la consulta según tus necesidades
+        $query = "SELECT id, ciudad FROM busquedas_rapidas WHERE ciudad LIKE '%$busqueda_ciudad%'";
+        $result = $conn->query($query);
+
+        // Verifica si la consulta fue exitosa
+        if (!$result) {
+            die("Error en la consulta de búsqueda: " . $conn->error);
+        }
+
+        // Verifica si hay filas devueltas
+        if ($result->num_rows > 0) {
+            $ciudades = $result->fetch_all(MYSQLI_ASSOC);
+        } else {
+            // No se encontraron ciudades que coincidan con la búsqueda
+            echo "No se encontraron ciudades que coincidan con la búsqueda.";
+        }
+
+        // Cierra el resultado
+        $result->close();
+    }
 ?>
+
+
+
 
 <!DOCTYPE html>
 <html lang="es">
@@ -126,7 +179,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["accion_mensajes"])) {
         <h1>Panel de Administrador</h1>
         <!-- Formulario y HTML para el CRUD de Usuarios -->
         <section>
-            <h2>Usuarios</h2>
+        <h2>Usuarios</h2>
             <form method="post" action="admin.php">
                 <input type="hidden" name="accion_usuarios" value="leer_usuarios">
                 <button type="submit">Mostrar Usuarios</button>
@@ -134,52 +187,52 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["accion_mensajes"])) {
                     <button type="button">Agregar Usuario</button>
                 </a>
                 <?php if ($tabla_usuarios_visible): ?>
-                <input type="text" style="padding: 10px; border-radius: 5px;" name="busqueda_usuarios"
-                    placeholder="Buscar Usuarios">
+                    <input type="text" style="padding: 10px; border-radius: 5px;" name="busqueda_usuarios"
+                           placeholder="Buscar Usuarios">
                 <?php endif; ?>
+                <button type="submit" name="buscar_usuarios">Buscar</button>
             </form>
 
             <?php if ($tabla_usuarios_visible && isset($usuarios)): ?>
-            <table>
-                <thead>
+                <table>
+                    <thead>
                     <tr>
                         <th>ID</th>
                         <th>Nombre</th>
                         <th>Correo</th>
                         <th>Acciones</th> <!-- Nuevo encabezado para acciones -->
                     </tr>
-                </thead>
-                <tbody>
+                    </thead>
+                    <tbody>
                     <?php foreach ($usuarios as $usuario): ?>
-                    <tr>
-                        <td>
-                            <?php echo $usuario['id']; ?>
-                        </td>
-                        <td>
-                            <?php echo $usuario['nombre']; ?>
-                        </td>
-                        <td>
-                            <?php echo $usuario['correo']; ?>
-                        </td>
-                        <td>
-                            <a href="editar_usuario.php?id=<?php echo $usuario['id']; ?>">
-                                <img src="img/editar.svg" alt="Editar">
-                            </a>
-                            <a href="eliminar_usuario.php?id=<?php echo $usuario['id']; ?>">
-                                <img src="img/borrar.svg" alt="Borrar">
-                            </a>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td>
+                                <?php echo $usuario['id']; ?>
+                            </td>
+                            <td>
+                                <?php echo $usuario['nombre']; ?>
+                            </td>
+                            <td>
+                                <?php echo $usuario['correo']; ?>
+                            </td>
+                            <td>
+                                <a href="editar_usuario.php?id=<?php echo $usuario['id']; ?>">
+                                    <img src="img/editar.svg" alt="Editar">
+                                </a>
+                                <a href="eliminar_usuario.php?id=<?php echo $usuario['id']; ?>"
+                                   onclick="return confirmarEliminacion();">
+                                    <img src="img/borrar.svg" alt="Borrar">
+                                </a>
+                            </td>
+                        </tr>
                     <?php endforeach; ?>
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
             <?php endif; ?>
         </section>
-
-
         <!-- Formulario y HTML para el CRUD de Ciudades -->
         <section>
-            <h2>Ciudades</h2>
+        <h2>Ciudades</h2>
             <form method="post" action="admin.php">
                 <input type="hidden" name="accion_ciudades" value="leer_ciudades">
                 <button type="submit">Mostrar Ciudades</button>
@@ -187,40 +240,42 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["accion_mensajes"])) {
                     <button type="button">Agregar Ciudad</button>
                 </a>
                 <?php if ($tabla_ciudades_visible): ?>
-                <input type="text" style="padding: 10px; border-radius: 5px;" name="busqueda_ciudad"
-                    placeholder="Buscar Ciudad">
+                    <input type="text" style="padding: 10px; border-radius: 5px;" name="busqueda_ciudad"
+                           placeholder="Buscar Ciudad">
                 <?php endif; ?>
+                <button type="submit" name="buscar_ciudades">Buscar</button>
             </form>
             <?php if ($tabla_ciudades_visible && isset($ciudades)): ?>
-            <table>
-                <thead>
+                <table>
+                    <thead>
                     <tr>
                         <th>ID</th>
                         <th>Nombre</th>
                         <th>Acciones</th>
                     </tr>
-                </thead>
-                <tbody>
+                    </thead>
+                    <tbody>
                     <?php foreach ($ciudades as $ciudad): ?>
-                    <tr>
-                        <td>
-                            <?php echo $ciudad['id']; ?>
-                        </td>
-                        <td>
-                            <?php echo $ciudad['ciudad']; ?>
-                        </td>
-                        <td>
-                            <a href="editar_ciudad.php?id=<?php echo $ciudad['id']; ?>">
-                                <img src="img/editar.svg" alt="Editar">
-                            </a>
-                            <a href="eliminar_ciudad.php?id=<?php echo $ciudad['id']; ?>">
-                                <img src="img/borrar.svg" alt="Borrar">
-                            </a>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td>
+                                <?php echo $ciudad['id']; ?>
+                            </td>
+                            <td>
+                                <?php echo $ciudad['ciudad']; ?>
+                            </td>
+                            <td>
+                                <a href="editar_ciudad.php?id=<?php echo $ciudad['id']; ?>">
+                                    <img src="img/editar.svg" alt="Editar">
+                                </a>
+                                <a href="eliminar_ciudad.php?id=<?php echo $ciudad['id']; ?>"
+                                   onclick="return confirmarEliminacion();">
+                                    <img src="img/borrar.svg" alt="Borrar">
+                                </a>
+                            </td>
+                        </tr>
                     <?php endforeach; ?>
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
             <?php endif; ?>
         </section>
 
@@ -232,8 +287,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["accion_mensajes"])) {
                 <button type="submit">Ver Mensajes</button>
             </form>
             <?php if ($tabla_mensajes_visible && isset($mensajes_contacto)): ?>
-            <table>
-                <thead>
+                <table>
+                    <thead>
                     <tr>
                         <th>ID</th>
                         <th>Nombre</th>
@@ -242,37 +297,44 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["accion_mensajes"])) {
                         <th>Mensaje</th>
                         <th>Acciones</th>
                     </tr>
-                </thead>
-                <tbody>
+                    </thead>
+                    <tbody>
                     <?php foreach ($mensajes_contacto as $mensaje): ?>
-                    <tr>
-                        <td>
-                            <?php echo $mensaje['id']; ?>
-                        </td>
-                        <td>
-                            <?php echo $mensaje['nombre_empresa']; ?>
-                        </td>
-                        <td>
-                            <?php echo $mensaje['ubicacion']; ?>
-                        </td>
-                        <td>
-                            <?php echo $mensaje['tipo_consulta']; ?>
-                        </td>
-                        <td>
-                            <?php echo $mensaje['mensaje']; ?>
-                        </td>
-                        <td>
-                            <a href="eliminar_mensaje.php?id=<?php echo $mensaje['id']; ?>">
-                                <img src="img/borrar.svg" alt="Borrar">
-                            </a>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td>
+                                <?php echo $mensaje['id']; ?>
+                            </td>
+                            <td>
+                                <?php echo $mensaje['nombre_empresa']; ?>
+                            </td>
+                            <td>
+                                <?php echo $mensaje['ubicacion']; ?>
+                            </td>
+                            <td>
+                                <?php echo $mensaje['tipo_consulta']; ?>
+                            </td>
+                            <td>
+                                <?php echo $mensaje['mensaje']; ?>
+                            </td>
+                            <td>
+                                <a href="eliminar_mensaje.php?id=<?php echo $mensaje['id']; ?>"
+                                   onclick="return confirmarEliminacion();">
+                                    <img src="img/borrar.svg" alt="Borrar">
+                                </a>
+                            </td>
+                        </tr>
                     <?php endforeach; ?>
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
             <?php endif; ?>
         </section>
     </div>
+
+    <script>
+        function confirmarEliminacion() {
+            return confirm("¿Estás seguro de que deseas eliminar este usuario?");
+        }
+    </script>
 
 </body>
 <footer>

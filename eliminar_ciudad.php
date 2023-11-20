@@ -8,23 +8,23 @@ if (!$conn) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET["id"])) {
-    $id_usuario = $_GET["id"];
+    $id_ciudad = $_GET["id"];
 
-    // Realiza la eliminación del usuario en la base de datos
-    $query = "DELETE FROM usuarios WHERE id = ?";
+    // Realiza la eliminación de la ciudad en la base de datos
+    $query = "DELETE FROM busquedas_rapidas WHERE id = ?";
     $stmt = $conn->prepare($query);
-    $stmt->bind_param("i", $id_usuario);
+    $stmt->bind_param("i", $id_ciudad);
 
     if ($stmt->execute()) {
-        // Usuario eliminado correctamente
+        // Ciudad eliminada correctamente
         echo "<script>
-                alert('Usuario eliminado correctamente.');
+                alert('Ciudad eliminada correctamente.');
                 window.location.href = 'admin.php';
               </script>";
     } else {
-        // Error al eliminar el usuario
+        // Error al eliminar la ciudad
         echo "<script>
-                alert('Error al eliminar el usuario.');
+                alert('Error al eliminar la ciudad.');
                 window.location.href = 'admin.php';
               </script>";
     }

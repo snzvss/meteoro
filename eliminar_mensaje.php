@@ -8,23 +8,23 @@ if (!$conn) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET["id"])) {
-    $id_usuario = $_GET["id"];
+    $id_mensaje = $_GET["id"];
 
-    // Realiza la eliminación del usuario en la base de datos
-    $query = "DELETE FROM usuarios WHERE id = ?";
+    // Realiza la eliminación del mensaje en la base de datos
+    $query = "DELETE FROM contactos WHERE id = ?";
     $stmt = $conn->prepare($query);
-    $stmt->bind_param("i", $id_usuario);
+    $stmt->bind_param("i", $id_mensaje);
 
     if ($stmt->execute()) {
-        // Usuario eliminado correctamente
+        // Mensaje eliminado correctamente
         echo "<script>
-                alert('Usuario eliminado correctamente.');
+                alert('Mensaje eliminado correctamente.');
                 window.location.href = 'admin.php';
               </script>";
     } else {
-        // Error al eliminar el usuario
+        // Error al eliminar el mensaje
         echo "<script>
-                alert('Error al eliminar el usuario.');
+                alert('Error al eliminar el mensaje.');
                 window.location.href = 'admin.php';
               </script>";
     }
