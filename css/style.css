@@ -13,9 +13,11 @@
 	font-family: 'Roboto', sans-serif;
 	box-sizing: border-box;
 	text-decoration: none;
+	padding-bottom: 2.5px;
 }
 
-html, body {
+html,
+body {
 	scroll-behavior: smooth;
 }
 
@@ -49,19 +51,20 @@ body.on {
 }
 
 .container {
-	max-width: 1000px;
+	max-width: 70%;
 	margin: 0 auto;
 	padding: 0 20px;
 }
 
 .main {
-	height: 100vh;
+	height: auto;
+
 }
 
 .scroll-down {
 	display: flex;
 	justify-content: center;
-	margin-top: 50px;
+	margin-top: 30px;
 	animation: scrolldown 1s infinite;
 }
 
@@ -70,10 +73,10 @@ body.on {
 }
 
 /* navbar */
-.navbar-nav  {
+.navbar-nav {
 	display: flex;
 	justify-content: space-between;
-	margin: 20px;
+	margin: 10px;
 }
 
 .navbar-toggler {
@@ -95,8 +98,14 @@ body.on {
 }
 
 .navbar-brand-txt a {
+	margin-bottom: 6px;
+	align-items: center;
 	font-size: 24px;
 	letter-spacing: 1px;
+}
+
+.logo-icon {
+	margin-right: 10px;
 }
 
 .navs {
@@ -134,23 +143,28 @@ body.on {
 .navs .navs-item.notbtn:hover {
 	/*transform: scale(1.1);*/
 	font-weight: bold;
-	background-color: rgb(0,0,0,0.3);
+	background-color: rgb(0, 0, 0, 0.3);
 }
+
 .navs .navs-item.notbtn:focus {
 	/*transform: scale(1.1);*/
 	font-weight: bold;
-	background-color: rgb(0,0,0,0.1);
-	border-radius: 4px;	
+	background-color: rgb(0, 0, 0, 0.1);
+	border-radius: 4px;
 }
 
 .navs-item .btn {
 	font-weight: bold;
 }
+
 /* navbar end */
 
 /* jumbotron */
 .jumbotron {
-	margin-top: 100px;
+	background-color: rgba(137, 43, 226, 0.27);
+	padding-bottom: 50px;
+	padding-top: 50px;
+	margin-bottom: 50px;
 }
 
 .jumbotron-items {
@@ -187,6 +201,7 @@ body.on {
 .jumbotron-item .jumbotron-buttons button {
 	margin: 10px 5px;
 }
+
 /* jumbotron end */
 
 /* features */
@@ -247,6 +262,7 @@ body.on {
 	font-size: 30px;
 	font-weight: bold;
 }
+
 /* features end */
 
 /* services */
@@ -267,7 +283,7 @@ body.on {
 	margin: 0 auto;
 	border-radius: 50px;
 	margin-top: 7px;
-	min-width: 70px;	
+	min-width: 70px;
 }
 
 .services {
@@ -290,12 +306,14 @@ body.on {
 .service span {
 	font-weight: bold;
 }
+
 /* services end */
 
-/* footer */
-.footer {
-	margin-top: 100px;
-	background-color: var(--third);
+/* Footer */
+footer {
+	margin-top: 6px;
+	background-color: var(--first);
+
 }
 
 .footer .container span {
@@ -303,17 +321,18 @@ body.on {
 	font-weight: bold;
 	text-align: center;
 	width: 100%;
+	margin: 5px;
 	display: block;
-	padding: 15px;
+
 }
 
 .footer-items {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    flex-direction: row;
-    align-items: center;
-    align-content: center;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	flex-direction: row;
+	align-items: center;
+	align-content: center;
 }
 
 .footer-item ul {
@@ -333,6 +352,7 @@ body.on {
 .footer-ul li a:hover {
 	color: var(--secondary);
 }
+
 /* footer end */
 
 /* media query - responsive website */
@@ -386,6 +406,7 @@ body.on {
 	.jumbotron-items .jumbotron-item img {
 		display: none;
 	}
+
 	/* navbar mobile version end */
 
 	/* features mobile version */
@@ -394,7 +415,8 @@ body.on {
 		text-align: center;
 	}
 
-	.feature-info .feature-info-t, .feature-info .feature-info-d {
+	.feature-info .feature-info-t,
+	.feature-info .feature-info-d {
 		text-align: center;
 	}
 
@@ -405,12 +427,14 @@ body.on {
 	.features .feature:nth-child(2) {
 		flex-direction: column;
 	}
+
 	/* features mobile version end */
 
 	/* services mobile version */
 	.services-box h1 {
 		font-size: 20px;
 	}
+
 	/* services mobile version end */
 
 }
@@ -420,15 +444,19 @@ body.on {
 	20% {
 		transform: translateY(0px);
 	}
+
 	40% {
 		transform: translateY(10px);
 	}
+
 	60% {
 		transform: translateY(0px);
 	}
+
 	80% {
 		transform: translateY(10px);
 	}
+
 	100% {
 		transform: translateY(0px);
 	}
@@ -436,7 +464,7 @@ body.on {
 
 /* formulario */
 .contact-box {
-	margin: 100px;
+	margin-bottom: 20px;
 }
 
 .contact-box .contact-t {
@@ -524,3 +552,32 @@ body.on {
 }
 
 /* formulario end */
+
+/*TABLA*/
+/* Agrega estos estilos en tu hoja de estilo personalizada */
+.features-table {
+	width: 100%;
+	border-collapse: separate;
+	border-spacing: 10px;
+}
+
+.features-table td {
+	text-align: justify;
+	padding: 20px;
+	background-color: var(--first-disabled);
+	border-radius: 8px;
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.feature-img {
+	max-width: 50%;
+	height: auto;
+	display: block;
+	margin: 0 auto;
+  }
+
+.feature-info-d,
+.feature-info-t {
+	font-size: 16px;
+	color: var(--secondary);
+}

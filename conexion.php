@@ -2,7 +2,7 @@
 
 $host = "localhost";
 $usuario = "root";
-$clave = "";
+$clave = "root";
 $base_de_datos = "weather";
 
 $conn = new mysqli($host, $usuario, $clave, $base_de_datos);

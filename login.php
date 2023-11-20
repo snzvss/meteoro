@@ -1,22 +1,22 @@
 <?php
-include 'conexion.php';
+    include 'conexion.php';
 
-// Verifica si la conexión a la base de datos es exitosa
-if (!$conn) {
+    // Verifica si la conexión a la base de datos es exitosa
+    if (!$conn) {
     $response = "Error de conexión a la base de datos.";
     echo $response;
-}
+    }
 
-// Verifica la conexión
-if ($conn->connect_error) {
+    // Verifica la conexión
+    if ($conn->connect_error) {
     die("Conexión fallida: " . $conn->connect_error);
-}
+    }
 
-// Inicializa la variable de mensaje de error
-$error_message = "";
+    // Inicializa la variable de mensaje de error
+    $error_message = "";
 
-// Procesa el formulario cuando se envía
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Procesa el formulario cuando se envía
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Recupera los datos del formulario
     $correo = $_POST["username"];
     $contrasena = $_POST["password"];
@@ -28,34 +28,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_result($tipo_usuario, $hashed_password);
     // Verifica si se encontró el usuario y la contraseña es correcta
     if ($stmt->fetch() && password_verify($contrasena, $hashed_password)) {
-        // Contraseña correcta, inicia sesión o realiza otras acciones necesarias
-        // Redirige al usuario según su tipo
-        if ($tipo_usuario == "administrador" || $tipo_usuario == "usuario") {
-            session_start();
-            $_SESSION['usuario_autenticado'] = true;
-            $_SESSION['tipo_usuario'] = $tipo_usuario;
-            $_SESSION['usuario'] = $correo;
-            if ($tipo_usuario == "administrador") {
-                echo '<script>window.location="admin.php"</script>';
-            } elseif ($tipo_usuario == "usuario") {
-                echo '<script>window.location="inicio.php"</script>';
-            }
-            exit();
-        }
+    // Contraseña correcta, inicia sesión o realiza otras acciones necesarias
+    // Redirige al usuario según su tipo
+    if ($tipo_usuario == "administrador" || $tipo_usuario == "usuario") {
+    session_start();
+    $_SESSION['usuario_autenticado'] = true;
+    $_SESSION['tipo_usuario'] = $tipo_usuario;
+    $_SESSION['usuario'] = $correo;
+    if ($tipo_usuario == "administrador") {
+    echo '<script>window.location = "admin.php"</script>';
+    } elseif ($tipo_usuario == "usuario") {
+    echo '<script>window.location = "inicio.php"</script>';
+    }
+    exit();
+    }
     } else {
-        // Usuario o contraseña incorrectos
-        $error_message = "Usuario o contraseña incorrectos.";
+    // Usuario o contraseña incorrectos
+    $error_message = "Usuario o contraseña incorrectos.";
     }
 
 
     // Cierra la declaración
     $stmt->close();
     $conn->close();
-}
-?>
+    }
+    ?>
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="utf-8">
     <title>Login - Mi Empresa Meteorológica</title>
@@ -66,67 +67,97 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" type="text/css" href="./css/txtformatting.css">
     <link rel="stylesheet" type="text/css" href="./css/shadow.css">
     <link rel="stylesheet" type="text/css" href="./css/loading.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+        integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
+
 <body class="on">
+    <main class="main">
+        <div class="navbar">
+            <div class="container">
+                <div class="navbar-nav">
+                    <div class="navbar-brand">
+                        <span><img src="./img/logo.svg" alt="TempoTech Logo" class="logo-icon" width="70px"></span>
+                        <span class="navbar-brand-txt"><a class="txt-bold type-1" href="/">TempoTech</a></span>
+                    </div>
 
-    <div class="login-container">
-        <h1>
-            <img src="./img/login-svgrepo-com.svg" alt="Login Icon" class="login-icon">
-            Login
-        </h1>
-        <form method="post" action="login.php">
-            <label for="username">Correo:</label>
-            <input type="text" id="username" name="username" required>
+                    <span class="navbar-toggler" id="toggler"><i onclick="toggleNavbar(this)"
+                            class="fas fa-bars"></i></span>
 
-            <label for="password">Contraseña:</label>
-            <input type="password" id="password" name="password" required>
+                    <div class="navs" id="navs">
+                        <div class="navs-item notbtn"><a href="index.html" class="txt-uppercase">Inicio</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <div class="features-box">
+        <div class="container">
+            <div class="login-container">
+                <h1>
+                    <img src="./img/login-svgrepo-com.svg" alt="Login Icon" class="login-icon">
+                    Login
+                </h1>
+                <form method="post" action="login.php">
+                    <label for="username">Correo:</label>
+                    <input type="text" id="username" name="username" required>
 
-            <button type="submit">Iniciar sesión</button>
-        </form>
-        
-        <?php
-        // Muestra mensajes de error si hay alguno
-        if (!empty($error_message)) {
-            echo '<p class="error-message">' . $error_message . '</p>';
-        }
-        ?>
+                    <label for="password">Contraseña:</label>
+                    <input type="password" id="password" name="password" required>
 
-        <!-- Agrega un enlace o botón para dirigir a los usuarios a la página de registro -->
-        <p>¿No tienes una cuenta? <a href="register.php">Regístrate aquí</a></p>
+                    <button type="submit">Iniciar sesión</button>
+                </form>
+
+                <?php
+    // Muestra mensajes de error si hay alguno
+    if (!empty($error_message)) {
+    echo '<p class="error-message">' . $error_message . '</p>';
+    }
+    ?>
+
+                <!-- Agrega un enlace o botón para dirigir a los usuarios a la página de registro -->
+                <p>¿No tienes una cuenta? <a href="register.php">Regístrate aquí</a></p>
+            </div>
+        </div>
     </div>
 
     <!-- Agrega tus scripts JS aquí -->
     <style>
         /* Agrega estos estilos en tu hoja de estilo personalizada (your-custom-login-styles.css) */
 
-        body {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-        }
-
         .login-container {
+            width: 35%;
             background-color: var(--third-disabled);
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            margin: 0 auto;
+            /* Centra el contenedor en la página */
+            margin-top: 50px;
+            /* Ajusta el margen superior según tus preferencias */
         }
 
         .login-container h1 {
             color: var(--secondary);
             display: flex;
             text-align: center;
-            flex-direction: row;
-            flex-wrap: nowrap;
+            align-items: center;
+            /* Centra verticalmente el texto e icono */
             justify-content: center;
+            margin-bottom: 20px;
+            /* Espaciado inferior */
+        }
+
+        .login-container h1 img {
+            width: 24px;
+            /* Ajusta el tamaño del icono según tus preferencias */
+            margin-right: 8px;
+            /* Espacio entre el icono y el texto "Login" */
         }
 
         .login-container form {
             display: flex;
-            margin: 1px;
             flex-direction: column;
         }
 
@@ -134,7 +165,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             font-size: 18px;
             font-weight: bold;
             color: var(--secondary);
-            margin-bottom: 0px;
+            margin-bottom: 5px;
+            /* Ajusta el espacio inferior según tus preferencias */
         }
 
         .login-container input {
@@ -187,12 +219,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         .login-container a:hover {
             color: var(--o1);
         }
-
-        .login-container h1 img {
-            width: 24px; /* Ajusta el tamaño del icono según tus preferencias */
-            margin-right: 8px; /* Espacio entre el icono y el texto "Login" */
-        }
-
     </style>
 </body>
+
 </html>

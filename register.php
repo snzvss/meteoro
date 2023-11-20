@@ -50,6 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="utf-8">
     <title>Registro - Mi Empresa Meteorológica</title>
@@ -60,34 +61,55 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" type="text/css" href="./css/txtformatting.css">
     <link rel="stylesheet" type="text/css" href="./css/shadow.css">
     <link rel="stylesheet" type="text/css" href="./css/loading.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+        integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
+
 <body class="on">
+    <main class="main">
+        <div class="navbar">
+            <div class="container">
+                <div class="navbar-nav">
+                    <div class="navbar-brand">
+                        <span><img src="./img/logo.svg" alt="TempoTech Logo" class="logo-icon" width="70px"></span>
+                        <span class="navbar-brand-txt"><a class="txt-bold type-1" href="/">TempoTech</a></span>
+                    </div>
 
-    <div class="registro-container">
-        <h1>Registro</h1>
-        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-            <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" name="nombre" required>
+                    <span class="navbar-toggler" id="toggler"><i onclick="toggleNavbar(this)"
+                            class="fas fa-bars"></i></span>
 
-            <label for="apellido">Apellido:</label>
-            <input type="text" id="apellido" name="apellido" required>
-
-            <label for="correo">Correo electrónico:</label>
-            <input type="email" id="correo" name="correo" required>
-
-            <label for="contrasena">Contraseña:</label>
-            <input type="password" id="contrasena" name="contrasena" required>
-
-            <div class="checkbox-container">
-                <input type="checkbox" id="acepta_politicas" name="acepta_politicas" required>
-                <label for="acepta_politicas">Acepto las políticas de privacidad</label>
+                    <div class="navs" id="navs">
+                        <div class="navs-item notbtn"><a href="index.html" class="txt-uppercase">Inicio</a></div>
+                    </div>
+                </div>
             </div>
+        </div>
+    </main>
+            <div class="registro-container">
+                <h1>Registro</h1>
+                <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" required>
 
-            <button type="submit">Registrar</button>
-        </form>
-        
-        <?php
+                    <label for="apellido">Apellido:</label>
+                    <input type="text" id="apellido" name="apellido" required>
+
+                    <label for="correo">Correo electrónico:</label>
+                    <input type="email" id="correo" name="correo" required>
+
+                    <label for="contrasena">Contraseña:</label>
+                    <input type="password" id="contrasena" name="contrasena" required>
+
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="acepta_politicas" name="acepta_politicas" required>
+                        <label for="acepta_politicas">Acepto las políticas de privacidad</label>
+                    </div>
+
+                    <button type="submit">Registrar</button>
+                </form>
+
+                <?php
         // Muestra mensajes de éxito o error después de procesar el formulario
         if (!empty($success_message)) {
             echo '<p class="success-message">' . $success_message . '</p>';
@@ -96,118 +118,118 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         ?>
 
-        <!-- Agrega un enlace o botón para dirigir a los usuarios a la página de inicio de sesión -->
-        <p>¿Ya tienes una cuenta? <a href="login.php">Inicia sesión aquí</a></p>
-    </div>    <style>
-        /* Agrega estos estilos en tu hoja de estilo personalizada (your-custom-register-styles.css) */
+                <!-- Agrega un enlace o botón para dirigir a los usuarios a la página de inicio de sesión -->
+                <p>¿Ya tienes una cuenta? <a href="login.php">Inicia sesión aquí</a></p>
+            </div>
+            <style>
+                /* Agrega estos estilos en tu hoja de estilo personalizada (your-custom-register-styles.css) */
+                
+                .registro-container {
+                    width: 30%;
+                    background-color: var(--third-disabled);
+                    padding: 20px;
+                    border-radius: 8px;
+                    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+                    margin: 0 auto;
+                    margin-top: 5px;
+                }
 
-        body {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-        }
+                .registro-container h1 {
+                    color: var(--secondary);
+                    text-align: center;
+                    margin-bottom: 20px;
+                    /* Espaciado inferior */
+                }
 
-        .registro-container {
-            background-color: var(--third-disabled);
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        }
+                .registro-container form {
+                    display: flex;
+                    flex-direction: column;
+                }
 
-        .registro-container h1 {
-            color: var(--secondary);
-            text-align: center;
-        }
+                .registro-container label {
+                    font-size: 18px;
+                    font-weight: bold;
+                    color: var(--secondary);
+                    margin-bottom: 5px;
+                    /* Ajusta el espacio inferior según tus preferencias */
+                }
 
-        .registro-container form {
-            display: flex;
-            margin: 1px;
-            flex-direction: column;
-        }
+                .registro-container input {
+                    width: 100%;
+                    padding: 10px;
+                    border: 1px solid var(--secondary);
+                    border-radius: 4px;
+                    font-size: 16px;
+                    margin-top: 5px;
+                }
 
-        .registro-container label {
-            font-size: 18px;
-            font-weight: bold;
-            color: var(--secondary);
-            margin-bottom: 0px;
-        }
+                .registro-container .checkbox-container {
+                    display: flex;
+                    align-items: center;
+                    margin-top: 10px;
+                    flex-direction: column;
+                }
 
-        .registro-container input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid var(--secondary);
-            border-radius: 4px;
-            font-size: 16px;
-            margin-top: 5px;
-        }
+                .registro-container input[type="checkbox"] {
+                    margin-right: 0;
+                    /* Cambia a 0 para alinear con el borde del contenedor */
+                }
 
-        .registro-container .checkbox-container {
-            display: flex;
-            align-items: center;
-            margin-top: 10px;
-            flex-direction: column;
-        }
+                .registro-container label[for="acepta_politicas"] {
+                    margin-top: 5px;
+                    /* Ajusta el margen superior según tus preferencias */
+                }
 
-        .registro-container input[type="checkbox"] {
-            margin-right: 288px;
-        }
+                .registro-container button {
+                    width: 100%;
+                    padding: 10px;
+                    background-color: var(--third);
+                    color: var(--secondary);
+                    border: none;
+                    border-radius: 4px;
+                    font-size: 18px;
+                    cursor: pointer;
+                    transition: 0.2s;
+                    margin-top: 10px;
+                }
 
-        .registro-container label[for="acepta_politicas"] {
-        margin-top: -17px;
-    }
-        
-        .registro-container button {
-            width: 100%;
-            padding: 10px;
-            background-color: var(--third);
-            color: var(--secondary);
-            border: none;
-            border-radius: 4px;
-            font-size: 18px;
-            cursor: pointer;
-            transition: 0.2s;
-            margin-top: 10px;
-        }
+                .registro-container button:hover {
+                    background-color: var(--third-disabled);
+                }
 
-        .registro-container button:hover {
-            background-color: var(--third-disabled);
-        }
+                .registro-container .success-message,
+                .registro-container .error-message {
+                    color: white;
+                    padding: 10px;
+                    border-radius: 5px;
+                    margin-top: 10px;
+                    text-align: center;
+                }
 
-        .registro-container .success-message {
-            color: white;
-            background-color: green;
-            padding: 10px;
-            border-radius: 5px;
-            margin-top: 10px;
-            text-align: center;
-        }
+                .registro-container .success-message {
+                    background-color: green;
+                }
 
-        .registro-container .error-message {
-            color: white;
-            background-color: red;
-            padding: 10px;
-            border-radius: 5px;
-            margin-top: 10px;
-            text-align: center;
-        }
+                .registro-container .error-message {
+                    background-color: red;
+                }
 
-        .registro-container p {
-            color: var(--secondary);
-            text-align: center;
-            margin-top: 10px;
-        }
+                .registro-container p {
+                    color: var(--secondary);
+                    text-align: center;
+                    margin-top: 10px;
+                }
 
-        .registro-container a {
-            color: var(--secondary);
-            font-weight: bold;
-            text-decoration: none;
-        }
+                .registro-container a {
+                    color: var(--secondary);
+                    font-weight: bold;
+                    text-decoration: none;
+                }
 
-        .registro-container a:hover {
-            color: var(--o1);
-        }
-    </style>
+                .registro-container a:hover {
+                    color: var(--o1);
+                }
+            </style>
 </body>
+
 </html>
