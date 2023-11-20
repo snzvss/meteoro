@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="utf-8">
-    <title>Mi Empresa Meteorológica</title>
+    <title>Contactanos - TempoTech</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="./img/logo.svg">
     <link rel="stylesheet" type="text/css" href="./css/coloring.css">
@@ -22,42 +22,27 @@
             <div class="container">
                 <div class="navbar-nav">
                     <div class="navbar-brand">
-                        <span class="navbar-brand-txt"><a class="txt-bold type-1" href="/">Mi Empresa Meteorológica</a></span>
+                        <span><img src="./img/logo.svg" alt="TempoTech Logo" class="logo-icon" width="70px"></span>
+                        <span class="navbar-brand-txt"><a class="txt-bold type-1" href="/">TempoTech</a></span>
                     </div>
 
-                    <span class="navbar-toggler" id="toggler"><i onclick="toggleNavbar(this)" class="fas fa-bars"></i></span>
+                    <span class="navbar-toggler" id="toggler"><i onclick="toggleNavbar(this)"
+                            class="fas fa-bars"></i></span>
 
                     <div class="navs" id="navs">
-                        <div class="navs-item notbtn"><a href="index2.html" class="txt-uppercase">Misión</a></div>
-                        <div class="navs-item notbtn"><a href="index.html" class="txt-uppercase">Servicios</a></div>
-                        <div class="navs-item notbtn"><a href="#contact-form" class="txt-uppercase">Contactar</a></div>
+                        <div class="navs-item notbtn"><a href="index.html" class="txt-uppercase">Inicio</a></div>
+                        <div class="navs-item notbtn"><a href="mision.html" class="txt-uppercase">Misión</a></div>
+                        <div class="navs-item notbtn"><a href="servicios.html" class="txt-uppercase">Servicios</a></div>
+                        <div class="navs-item notbtn"><a href="contactar.html" class="txt-uppercase">Contactar</a></div>
                         <div class="navs-item"><a href="login.php"><button class="btn txt-uppercase shadow-sm">Login</button></a></div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <div class="jumbotron">
-            <div class="container">
-                <div class="jumbotron-items">
-                    <div class="jumbotron-item">
-                        <span class="jumbotron-t">¿Por qué Mi Empresa Meteorológica?</span>
-                        <p class="jumbotron-d">Nuestra empresa ofrece servicios meteorológicos avanzados utilizando tecnología de vanguardia. Obtén pronósticos precisos y soluciones personalizadas para tus necesidades.</p>
-                        <div class="jumbotron-buttons">
-                            <button class="btn" onclick="location.href='#contact-form'">Contactar</button>
-                        </div>
-                    </div>
-                    <div class="jumbotron-item">
-                        <img src="./img/meteorologia.svg" alt="imagen">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <span class="scroll-down"><i class="fas fa-arrow-down"></i></span>
     </main>
 
     <div class="contact-box">
-        <h1 class="contact-t" id="contactar">Contactar</h1>
+        <h1 class="contact-t" id="contactar">Contactanos</h1>
         <div class="container">
             <div class="contact-form">
                 <form id="contact-form" action="procesar_formulario.php" method="post">
@@ -89,18 +74,6 @@
                                        
                 </form>
                 <div id="response-message"></div>
-            </div>
-        </div>
-    </div>
-    
-
-
-    <div class="features-box">
-        <div class="container">
-            <div class="footer-items">
-                <div class="footer-item">
-                    <span>&copy; 2023 Desarrollado por Camilo Sanz - Todos los derechos reservados.</span>
-                </div>                
             </div>
         </div>
     </div>
@@ -148,4 +121,15 @@
     
     
     </body>
+    <footer>
+        <div class="features-box">
+            <div class="container">
+                <div class="footer-items">
+                    <div class="footer-item">
+                        <span>&copy; 2023 Desarrollado por Camilo Sanz y Jeyson Marañon - Todos los derechos reservados.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
 </html>

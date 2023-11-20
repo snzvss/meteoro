@@ -1,0 +1,205 @@
+/* Estilos específicos para el panel de administrador */
+.dashboard-container {
+    max-width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* navbar */
+.navbar-nav {
+    display: flex;
+    justify-content: flex-end; /* Alinea a la derecha */
+    margin: 10px;
+}
+
+.navbar-toggler {
+    display: none;
+    position: absolute;
+    z-index: 5;
+    right: 0;
+    top: 0;
+    margin: 20px;
+}
+
+.navbar-toggler i {
+    font-size: 30px;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-brand-txt a {
+    margin-bottom: 6px;
+    align-items: center;
+    font-size: 24px;
+    letter-spacing: 1px;
+}
+
+.logo-icon {
+    margin-right: 10px;
+}
+
+.navs {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-nav .navs-item {
+    margin: 0px 10px;
+    padding: 10px;
+    font-weight: bold;
+}
+
+.navbar-nav .navs-item a {
+    font-size: 14px;
+    color: var(--secondary-disabled);
+    text-decoration: underline; /* Añade subrayado similar */
+    margin-left: 10px; /* Espaciado entre enlaces */
+}
+
+.navbar-nav .navs-item a:hover {
+    color: var(--secondary);
+}
+
+.navbar-nav .navs-item a button {
+    font-size: 14px;
+}
+
+.navbar-nav .navs-item.notbtn {
+    margin: 0px 10px;
+    transition: 0.3s;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.navbar-nav .navs-item.notbtn:hover {
+    font-weight: bold;
+    background-color: rgba(0, 0, 0, 0.3); /* Cambiado a rgba para obtener transparencia */
+}
+
+.navbar-nav .navs-item.notbtn:focus {
+    font-weight: bold;
+    background-color: rgba(0, 0, 0, 0.1); /* Cambiado a rgba para obtener transparencia */
+    border-radius: 4px;
+}
+
+.navbar-nav .navs-item .btn {
+    font-weight: bold;
+}
+/* navbar end */
+
+
+h1, h2 {
+    text-align: center;
+    color: var(--primary, #333);
+}
+
+/* Formularios */
+form {
+    text-align: center;
+    margin-bottom: 20px;
+    max-width: 400px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: var(--third, #3498db);
+    color: var(--secondary, #fff);
+    border: none;
+    padding: 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    transition: 0.2s;
+}
+
+button:hover {
+    background-color: var(--third-disabled, #2980b9);
+}
+
+/* Tablas */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+/* Columna de acciones en la tabla */
+td a {
+    display: inline-block;
+    margin-right: 8px;
+}
+
+td a img {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+}
+
+th {
+    background-color: var(--third, #3498db);
+    color: var(--secondary, #fff);
+}
+
+tbody tr:hover {
+    background-color: var(--third-disabled, #2980b9);
+}
+
+/* Búsqueda de ciudades y usuarios */
+.busqueda_ciudad,
+.busqueda_usuarios {
+    margin: 20px 0;
+}
+
+.busqueda_ciudad label,
+.busqueda_usuarios label {
+    font-size: 18px;
+}
+
+.busqueda_ciudad select,
+.busqueda_ciudad input,
+.busqueda_usuarios input,
+.busqueda_usuarios button {
+    padding: 10px;
+    font-size: 16px;
+}
+
+.busqueda_ciudad button,
+.busqueda_usuarios button {
+    padding: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.busqueda_ciudad button:hover,
+.busqueda_usuarios button:hover {
+    transition: 0.2s;
+}
