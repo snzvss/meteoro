@@ -219,6 +219,24 @@
         .login-container a:hover {
             color: var(--o1);
         }
+        @media screen and (max-width: 600px) {
+            .login-container {
+            width: 100%;
+            background-color: var(--third-disabled);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            margin: 0 50px;
+            /* Centra el contenedor en la página */
+            margin-top: 80px;
+            /* Ajusta el margen superior según tus preferencias */
+        }
+
+            .container {
+            margin: 0 1px;
+            width: 100%;
+        }
+    }
     </style>
 </body>
 
