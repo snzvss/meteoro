@@ -32,5 +32,5 @@ window.onload = () => {
 	setTimeout(() => {
 		ld.classList.add("off");
 		body.classList.remove("on")
-	}, 1510);
+	}, 500);
 }

@@ -142,6 +142,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["buscar_usuarios"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="./img/logo.svg">
     <link rel="stylesheet" type="text/css" href="./css/coloring.css">
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
     <link rel="stylesheet" type="text/css" href="./css/admin.css">
     <link rel="stylesheet" type="text/css" href="./css/txtformatting.css">
     <link rel="stylesheet" type="text/css" href="./css/shadow.css">
@@ -152,34 +153,45 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["buscar_usuarios"])) {
 </head>
 
 <body class="on">
-<div class="navbar">
+    <div class="loading" id="loading-box">
+        <div class="loading-item">
+            <div class="loading-progress"></div>
+        </div>
+    </div>
+    <main class="main">
+        <div class="navbar">
             <div class="container">
                 <div class="navbar-nav">
                     <div class="navbar-brand">
                         <span><img src="./img/logo.svg" alt="TempoTech Logo" class="logo-icon" width="70px"></span>
                         <span class="navbar-brand-txt"><a class="txt-bold type-1" href="index.html">TempoTech</a></span>
-                        
-                        <span class="navbar-toggler" id="toggler"><i onclick="toggleNavbar(this)"
-                            class="fas fa-bars"></i></span>
 
-                    <div class="navs" id="navs">
-                    <span>Bienvenido,
-            <?php echo $_SESSION["usuario"]?> |
-        </span>
-                        <div class="navs-item notbtn"><a href="admin.php" class="txt-uppercase">Inicio</a></div>
-        <div class="navs-item"><a href="login.php"><button class="btn txt-uppercase shadow-sm">Cerrar
-                    Sesion</button></a></div>
+                        <span class="navbar-toggler" id="toggler"><i onclick="toggleNavbar(this)"
+                                class="fas fa-bars"></i></span>
+                    </div>
+                        <div class="navs" id="navs">
+                            <div class="navbar-brand-txt"><span>Bienvenido,
+                                    <?php echo $_SESSION["usuario"]?>|
+                                </span></div>
+                            <div class="navs-item notbtn"><a href="admin.php" class="txt-uppercase">Inicio</a></div>
+                            <div class="navs-item"><a href="login.php"><button
+                                        class="btn txt-uppercase shadow-sm">Cerrar Sesion</button></a></div>
+                        
                     </div>
                 </div>
             </div>
         </div>
-</div>   
-    <div class="dashboard-container">
+    </main>
 
-        <h1>Panel de Administrador</h1>
+    <div class="dashboard-container">
+        <div class="contact-box">
+            <h1 class="contact-t-h1" id="">Panel de Administrador</h1>
+        </div>
         <!-- Formulario y HTML para el CRUD de Usuarios -->
         <section>
-        <h2>Usuarios</h2>
+            <div class="contact-box">
+                <h2 class="contact-t-h2" id="">Usuarios</h2>
+            
             <form method="post" action="admin.php">
                 <input type="hidden" name="accion_usuarios" value="leer_usuarios">
                 <button type="submit">Mostrar Usuarios</button>
@@ -187,52 +199,60 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["buscar_usuarios"])) {
                     <button type="button">Agregar Usuario</button>
                 </a>
                 <?php if ($tabla_usuarios_visible): ?>
-                    <input type="text" style="padding: 10px; border-radius: 5px;" name="busqueda_usuarios"
-                           placeholder="Buscar Usuarios">
-                <?php endif; ?>
-                <button type="submit" name="buscar_usuarios">Buscar</button>
-            </form>
+                <select name="campo_busqueda_usuarios">
+                    <option value="nombre">Nombre</option>
+                    <option value="correo">Correo</option>
+                </select>
 
+                <input type="text" style="padding: 10px; border-radius: 5px;" name="busqueda_usuarios"
+                    placeholder="Buscar Usuarios">
+                <button type="submit" name="buscar_usuarios">Buscar</button>
+                <?php endif; ?>
+            </form>
+            </div>
             <?php if ($tabla_usuarios_visible && isset($usuarios)): ?>
-                <table>
-                    <thead>
+            <table>
+                <thead>
                     <tr>
                         <th>ID</th>
                         <th>Nombre</th>
                         <th>Correo</th>
                         <th>Acciones</th> <!-- Nuevo encabezado para acciones -->
                     </tr>
-                    </thead>
-                    <tbody>
+                </thead>
+                <tbody>
                     <?php foreach ($usuarios as $usuario): ?>
-                        <tr>
-                            <td>
-                                <?php echo $usuario['id']; ?>
-                            </td>
-                            <td>
-                                <?php echo $usuario['nombre']; ?>
-                            </td>
-                            <td>
-                                <?php echo $usuario['correo']; ?>
-                            </td>
-                            <td>
-                                <a href="editar_usuario.php?id=<?php echo $usuario['id']; ?>">
-                                    <img src="img/editar.svg" alt="Editar">
-                                </a>
-                                <a href="eliminar_usuario.php?id=<?php echo $usuario['id']; ?>"
-                                   onclick="return confirmarEliminacion();">
-                                    <img src="img/borrar.svg" alt="Borrar">
-                                </a>
-                            </td>
-                        </tr>
+                    <tr>
+                        <td>
+                            <?php echo $usuario['id']; ?>
+                        </td>
+                        <td>
+                            <?php echo $usuario['nombre']; ?>
+                        </td>
+                        <td>
+                            <?php echo $usuario['correo']; ?>
+                        </td>
+                        <td>
+                            <a href="editar_usuario.php?id=<?php echo $usuario['id']; ?>">
+                                <img src="img/editar.svg" alt="Editar">
+                            </a>
+                            <a href="eliminar_usuario.php?id=<?php echo $usuario['id']; ?>"
+                                onclick="return confirmarEliminacion();">
+                                <img src="img/borrar.svg" alt="Borrar">
+                            </a>
+                        </td>
+                    </tr>
                     <?php endforeach; ?>
-                    </tbody>
-                </table>
+                </tbody>
+            </table>
+            <br><br>
             <?php endif; ?>
         </section>
         <!-- Formulario y HTML para el CRUD de Ciudades -->
         <section>
-        <h2>Ciudades</h2>
+            <div class="contact-box">
+                <h2 class="contact-t-h2" id="">Ciudades</h2>
+        
             <form method="post" action="admin.php">
                 <input type="hidden" name="accion_ciudades" value="leer_ciudades">
                 <button type="submit">Mostrar Ciudades</button>
@@ -240,55 +260,60 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["buscar_usuarios"])) {
                     <button type="button">Agregar Ciudad</button>
                 </a>
                 <?php if ($tabla_ciudades_visible): ?>
-                    <input type="text" style="padding: 10px; border-radius: 5px;" name="busqueda_ciudad"
-                           placeholder="Buscar Ciudad">
-                <?php endif; ?>
+                <input type="text" style="padding: 10px; border-radius: 5px;" name="busqueda_ciudad"
+                    placeholder="Buscar Ciudad">
                 <button type="submit" name="buscar_ciudades">Buscar</button>
+                <?php endif; ?>
             </form>
+            </div>
             <?php if ($tabla_ciudades_visible && isset($ciudades)): ?>
-                <table>
-                    <thead>
+            <table>
+                <thead>
                     <tr>
                         <th>ID</th>
                         <th>Nombre</th>
                         <th>Acciones</th>
                     </tr>
-                    </thead>
-                    <tbody>
+                </thead>
+                <tbody>
                     <?php foreach ($ciudades as $ciudad): ?>
-                        <tr>
-                            <td>
-                                <?php echo $ciudad['id']; ?>
-                            </td>
-                            <td>
-                                <?php echo $ciudad['ciudad']; ?>
-                            </td>
-                            <td>
-                                <a href="editar_ciudad.php?id=<?php echo $ciudad['id']; ?>">
-                                    <img src="img/editar.svg" alt="Editar">
-                                </a>
-                                <a href="eliminar_ciudad.php?id=<?php echo $ciudad['id']; ?>"
-                                   onclick="return confirmarEliminacion();">
-                                    <img src="img/borrar.svg" alt="Borrar">
-                                </a>
-                            </td>
-                        </tr>
+                    <tr>
+                        <td>
+                            <?php echo $ciudad['id']; ?>
+                        </td>
+                        <td>
+                            <?php echo $ciudad['ciudad']; ?>
+                        </td>
+                        <td>
+                            <a href="editar_ciudad.php?id=<?php echo $ciudad['id']; ?>">
+                                <img src="img/editar.svg" alt="Editar">
+                            </a>
+                            <a href="eliminar_ciudad.php?id=<?php echo $ciudad['id']; ?>"
+                                onclick="return confirmarEliminacion();">
+                                <img src="img/borrar.svg" alt="Borrar">
+                            </a>
+                        </td>
+                    </tr>
                     <?php endforeach; ?>
-                    </tbody>
-                </table>
+                </tbody>
+            </table>
+            <br><br>
             <?php endif; ?>
         </section>
 
         <!-- Formulario y HTML para ver y eliminar Mensajes de Contacto -->
         <section>
-            <h2>Mensajes de Contacto</h2>
+            <div class="contact-box">
+                <h2 class="contact-t-h2" id="">Mensajes de contacto</h2>
+
             <form method="post" action="admin.php">
                 <input type="hidden" name="accion_mensajes" value="ver_mensajes">
                 <button type="submit">Ver Mensajes</button>
             </form>
+            </div>
             <?php if ($tabla_mensajes_visible && isset($mensajes_contacto)): ?>
-                <table>
-                    <thead>
+            <table>
+                <thead>
                     <tr>
                         <th>ID</th>
                         <th>Nombre</th>
@@ -297,35 +322,35 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["buscar_usuarios"])) {
                         <th>Mensaje</th>
                         <th>Acciones</th>
                     </tr>
-                    </thead>
-                    <tbody>
+                </thead>
+                <tbody>
                     <?php foreach ($mensajes_contacto as $mensaje): ?>
-                        <tr>
-                            <td>
-                                <?php echo $mensaje['id']; ?>
-                            </td>
-                            <td>
-                                <?php echo $mensaje['nombre_empresa']; ?>
-                            </td>
-                            <td>
-                                <?php echo $mensaje['ubicacion']; ?>
-                            </td>
-                            <td>
-                                <?php echo $mensaje['tipo_consulta']; ?>
-                            </td>
-                            <td>
-                                <?php echo $mensaje['mensaje']; ?>
-                            </td>
-                            <td>
-                                <a href="eliminar_mensaje.php?id=<?php echo $mensaje['id']; ?>"
-                                   onclick="return confirmarEliminacion();">
-                                    <img src="img/borrar.svg" alt="Borrar">
-                                </a>
-                            </td>
-                        </tr>
+                    <tr>
+                        <td>
+                            <?php echo $mensaje['id']; ?>
+                        </td>
+                        <td>
+                            <?php echo $mensaje['nombre_empresa']; ?>
+                        </td>
+                        <td>
+                            <?php echo $mensaje['ubicacion']; ?>
+                        </td>
+                        <td>
+                            <?php echo $mensaje['tipo_consulta']; ?>
+                        </td>
+                        <td>
+                            <?php echo $mensaje['mensaje']; ?>
+                        </td>
+                        <td>
+                            <a href="eliminar_mensaje.php?id=<?php echo $mensaje['id']; ?>"
+                                onclick="return confirmarEliminacion();">
+                                <img src="img/borrar.svg" alt="Borrar">
+                            </a>
+                        </td>
+                    </tr>
                     <?php endforeach; ?>
-                    </tbody>
-                </table>
+                </tbody>
+            </table>
             <?php endif; ?>
         </section>
     </div>
@@ -335,7 +360,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["buscar_usuarios"])) {
             return confirm("¿Estás seguro de que deseas eliminar este usuario?");
         }
     </script>
-
+    <script type="text/javascript" src="./js/script.js"></script>
 </body>
 <footer>
     <div class="features-box">

@@ -1,5 +1,6 @@
 /* Estilos generales */
 * {
+    text-align: center;
     margin: 0;
     padding: 0;
     color: var(--secondary);
@@ -22,6 +23,7 @@ body.on {
     overflow: hidden !important;
 }
 
+/* Botones y contenedor principal */
 .btn {
     border: none;
     background-color: var(--third);
@@ -132,7 +134,7 @@ body.on {
     font-weight: bold;
 }
 
-/* Estilos específicos para el panel de administrador */
+/* Panel de administrador */
 .dashboard-container {
     max-width: 70%;
     margin: 0 auto;
@@ -141,53 +143,76 @@ body.on {
 
 h1, h2 {
     text-align: center;
-    color: var(--third, #333);
+    color: var(--secondary, #333);
 }
 
-/* Formularios */
+.contact-box .contact-t-h1 {
+    font-size: 35px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.contact-box .contact-t-h2 {
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.contact-box .contact-t-h1::after,
+.contact-box .contact-t-h2::after {
+    content: "";
+    display: block;
+    border-bottom: 3px solid var(--third);
+    width: 10%;
+    margin: 0 auto;
+    border-radius: 50px;
+    margin-top: 7px;
+    min-width: 70px;
+}
+
 form {
     text-align: center;
     margin-bottom: 20px;
-    max-width: 400px;
-    margin: 20px auto;
-    background-color: rgba(49, 44, 52, 0.27);
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(207, 207, 207, 0.1);
-}
-
-label {
-    display: block;
-    margin-bottom: 8px;
-    color: #555;
-}
-
-input, select, textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
 }
 
 button {
-    background-color: var(--third, #3498db);
-    color: var(--secondary, #fff);
+    /* Estilos para los botones */
+    padding: 10px;
+    background-color: var(--o1);
+    color: black;
     border: none;
-    padding: 12px;
     border-radius: 4px;
+    font-size: 18px;
     cursor: pointer;
-    width: 100%;
     transition: 0.2s;
 }
 
 button:hover {
-    background-color: var(--third-disabled, #2980b9);
+    background-color: var(--o1-disabled);
 }
 
-/* Tablas */
+/* Estilos para el menú desplegable (select) */
+form select {
+    color: black;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-left: 40px;
+}
+
+form select:hover {
+    border-color: var(--primary);
+}
+
+form select:focus {
+    border-color: var(--primary);
+    outline: none;
+}
+
 table {
+    /* Estilos para las tablas */
     width: 100%;
     border-collapse: collapse;
     margin-top: 10px;
@@ -199,7 +224,6 @@ th, td {
     text-align: left;
 }
 
-/* Columna de acciones en la tabla */
 td a {
     display: inline-block;
     margin-right: 8px;
@@ -212,12 +236,12 @@ td a img {
 }
 
 th {
-    background-color: var(--third, #3498db);
-    color: var(--secondary, #fff);
+    background-color: var(--third);
+    color: var(--secondary);
 }
 
 tbody tr:hover {
-    background-color: var(--third-disabled, #2980b9);
+    background-color: var(--third-disabled);
 }
 
 /* Búsqueda de ciudades y usuarios */
@@ -249,4 +273,83 @@ tbody tr:hover {
 .busqueda_ciudad button:hover,
 .busqueda_usuarios button:hover {
     transition: 0.2s;
+}
+
+@media (max-width: 992px) {
+    /* Estilos responsivos para pantallas más pequeñas */
+
+    /* Navbar mobile version */
+    .navbar-toggler {
+        display: block;
+    }
+
+    .navs {
+        flex-direction: column;
+        background-color: var(--primary-disabled);
+        transform: translateX(110%);
+        position: fixed;
+        z-index: 2;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        transition: 1s;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .navs.on {
+        transform: translateX(0%);
+        overflow: hidden;
+    }
+
+    .navs .navs-item {
+        width: 100%;
+        text-align: center;
+        margin: 10px 0px;
+    }
+
+    .navs-item a button {
+        width: 100%;
+    }
+
+    .jumbotron-items {
+        justify-content: center;
+    }
+
+    .jumbotron-items .jumbotron-item {
+        text-align: center;
+    }
+
+    .jumbotron-items .jumbotron-item img {
+        display: none;
+    }
+    
+    /* Navbar mobile version end */
+
+    /* Features mobile version */
+    .features-box .features-t {
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .feature-info .feature-info-t,
+    .feature-info .feature-info-d {
+        text-align: center;
+    }
+
+    .features .feature {
+        flex-direction: column;
+    }
+
+    .features .feature:nth-child(2) {
+        flex-direction: column;
+    }
+    /* Features mobile version end */
+
+    /* Services mobile version */
+    .services-box h1 {
+        font-size: 20px;
+    }
+    /* Services mobile version end */
 }

@@ -15,6 +15,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $contrasena = $_POST["contrasena"];
     $tipo_usuario = $_POST["tipo_usuario"];
 
+    // Consulta para verificar si el usuario ya existe
+    $consulta_usuario_existente = "SELECT id FROM usuarios WHERE correo = '$correo'";
+    $resultado = $conn->query($consulta_usuario_existente);
+
+    // Si ya existe un usuario con el mismo correo, muestra una alerta y redirige
+    if ($resultado->num_rows > 0) {
+        echo "<script>
+                alert('Usuario ya existe. Por favor, elige otro correo.');
+                window.location.href='agregar_usuario.php';
+              </script>";
+        exit(); // Termina el script para evitar ejecutar el resto del código
+    }
+
     // Hash de la contraseña (puedes mejorar esto según tus necesidades)
     $hashed_password = password_hash($contrasena, PASSWORD_DEFAULT);
 
@@ -23,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     // Ejecuta la consulta
     if ($conn->query($query) === TRUE) {
-        "<script>
+        echo "<script>
                 alert('Usuario agregado exitosamente.');
                 window.location.href='admin.php';
               </script>";
