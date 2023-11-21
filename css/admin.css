@@ -1,14 +1,58 @@
-/* Estilos específicos para el panel de administrador */
-.dashboard-container {
-    max-width: 80%;
-    margin: 0 auto;
-    padding: 20px;
+/* Estilos generales */
+* {
+    margin: 0;
+    padding: 0;
+    color: var(--secondary);
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+    text-decoration: none;
+    padding-bottom: 2.5px;
 }
 
-/* navbar */
+html, body {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--primary);
+}
+
+body.on {
+    overflow: hidden !important;
+}
+
+.btn {
+    border: none;
+    background-color: var(--third);
+    padding: 10px 30px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn:hover {
+    background-color: var(--third-disabled);
+}
+
+.btn.blue {
+    background-color: var(--o1);
+}
+
+.btn.blue:hover {
+    background-color: var(--o1-disabled);
+}
+
+.container {
+    max-width: 70%;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Navbar */
 .navbar-nav {
     display: flex;
-    justify-content: flex-end; /* Alinea a la derecha */
+    justify-content: space-between;
     margin: 10px;
 }
 
@@ -46,28 +90,26 @@
     align-items: center;
 }
 
-.navbar-nav .navs-item {
+.navs .navs-item {
     margin: 0px 10px;
     padding: 10px;
     font-weight: bold;
 }
 
-.navbar-nav .navs-item a {
+.navs .navs-item a {
     font-size: 14px;
     color: var(--secondary-disabled);
-    text-decoration: underline; /* Añade subrayado similar */
-    margin-left: 10px; /* Espaciado entre enlaces */
 }
 
-.navbar-nav .navs-item a:hover {
+.navs .navs-item a:hover {
     color: var(--secondary);
 }
 
-.navbar-nav .navs-item a button {
+.navs .navs-item a button {
     font-size: 14px;
 }
 
-.navbar-nav .navs-item.notbtn {
+.navs .navs-item.notbtn {
     margin: 0px 10px;
     transition: 0.3s;
     padding: 10px;
@@ -75,26 +117,31 @@
     cursor: pointer;
 }
 
-.navbar-nav .navs-item.notbtn:hover {
+.navs .navs-item.notbtn:hover {
     font-weight: bold;
-    background-color: rgba(0, 0, 0, 0.3); /* Cambiado a rgba para obtener transparencia */
+    background-color: rgba(0, 0, 0, 0.3);
 }
 
-.navbar-nav .navs-item.notbtn:focus {
+.navs .navs-item.notbtn:focus {
     font-weight: bold;
-    background-color: rgba(0, 0, 0, 0.1); /* Cambiado a rgba para obtener transparencia */
+    background-color: rgba(0, 0, 0, 0.1);
     border-radius: 4px;
 }
 
-.navbar-nav .navs-item .btn {
+.navs-item .btn {
     font-weight: bold;
 }
-/* navbar end */
 
+/* Estilos específicos para el panel de administrador */
+.dashboard-container {
+    max-width: 70%;
+    margin: 0 auto;
+    padding: 20px;
+}
 
 h1, h2 {
     text-align: center;
-    color: var(--primary, #333);
+    color: var(--third, #333);
 }
 
 /* Formularios */
@@ -103,10 +150,10 @@ form {
     margin-bottom: 20px;
     max-width: 400px;
     margin: 20px auto;
-    background-color: #fff;
+    background-color: rgba(49, 44, 52, 0.27);
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(207, 207, 207, 0.1);
 }
 
 label {

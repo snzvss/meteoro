@@ -20,7 +20,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     // Verifica si la inserción fue exitosa
     if ($result) {
-        include "admin.php";
+        echo "<script>
+                alert('Ciudad agregada exitosamente.');
+                window.location.href='admin.php';
+              </script>";
     } else {
         echo "Error al agregar la ciudad: " . $conn->error;
     }

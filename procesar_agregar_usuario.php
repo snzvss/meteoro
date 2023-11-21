@@ -23,7 +23,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     // Ejecuta la consulta
     if ($conn->query($query) === TRUE) {
-        include "admin.php";
+        "<script>
+                alert('Usuario agregado exitosamente.');
+                window.location.href='admin.php';
+              </script>";
     } else {
         echo "Error al agregar usuario: " . $conn->error;
     }
