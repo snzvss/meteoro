@@ -58,6 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="icon" type="image/png" href="./img/logo.svg">
     <link rel="stylesheet" type="text/css" href="./css/coloring.css">
     <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <link rel="stylesheet" type="text/css" href="./css/register.css">
     <link rel="stylesheet" type="text/css" href="./css/txtformatting.css">
     <link rel="stylesheet" type="text/css" href="./css/shadow.css">
     <link rel="stylesheet" type="text/css" href="./css/loading.css">
@@ -86,30 +87,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </div>
     </main>
-            <div class="registro-container">
-                <h1>Registro</h1>
-                <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-                    <label for="nombre">Nombre:</label>
-                    <input type="text" id="nombre" name="nombre" required>
+    <div class="registro-container">
+        <h1>Registro</h1>
+        <form method="post" action="<?php echo htmlspecialchars($_SERVER[" PHP_SELF"]); ?>">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required>
 
-                    <label for="apellido">Apellido:</label>
-                    <input type="text" id="apellido" name="apellido" required>
+            <label for="apellido">Apellido:</label>
+            <input type="text" id="apellido" name="apellido" required>
 
-                    <label for="correo">Correo electrónico:</label>
-                    <input type="email" id="correo" name="correo" required>
+            <label for="correo">Correo electrónico:</label>
+            <input type="email" id="correo" name="correo" required>
 
-                    <label for="contrasena">Contraseña:</label>
-                    <input type="password" id="contrasena" name="contrasena" required>
+            <label for="contrasena">Contraseña:</label>
+            <input type="password" id="contrasena" name="contrasena" required>
 
-                    <div class="checkbox-container">
-                        <input type="checkbox" id="acepta_politicas" name="acepta_politicas" required>
-                        <label for="acepta_politicas">Acepto las políticas de privacidad</label>
-                    </div>
+            <div class="checkbox-container">
+                <label for="acepta_politicas">Acepto las políticas de privacidad <input type="checkbox"
+                        id="acepta_politicas" name="acepta_politicas" required></label>
 
-                    <button type="submit">Registrar</button>
-                </form>
 
-                <?php
+            </div>
+
+            <button type="submit">Registrar</button>
+        </form>
+
+        <?php
         // Muestra mensajes de éxito o error después de procesar el formulario
         if (!empty($success_message)) {
             echo '<p class="success-message">' . $success_message . '</p>';
@@ -118,118 +121,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         ?>
 
-                <!-- Agrega un enlace o botón para dirigir a los usuarios a la página de inicio de sesión -->
-                <p>¿Ya tienes una cuenta? <a href="login.php">Inicia sesión aquí</a></p>
-            </div>
-            <style>
-                /* Agrega estos estilos en tu hoja de estilo personalizada (your-custom-register-styles.css) */
-                
-                .registro-container {
-                    width: 30%;
-                    background-color: var(--third-disabled);
-                    padding: 20px;
-                    border-radius: 8px;
-                    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-                    margin: 0 auto;
-                    margin-top: 5px;
-                }
-
-                .registro-container h1 {
-                    color: var(--secondary);
-                    text-align: center;
-                    margin-bottom: 20px;
-                    /* Espaciado inferior */
-                }
-
-                .registro-container form {
-                    display: flex;
-                    flex-direction: column;
-                }
-
-                .registro-container label {
-                    font-size: 18px;
-                    font-weight: bold;
-                    color: var(--secondary);
-                    margin-bottom: 5px;
-                    /* Ajusta el espacio inferior según tus preferencias */
-                }
-
-                .registro-container input {
-                    width: 100%;
-                    padding: 10px;
-                    border: 1px solid var(--secondary);
-                    border-radius: 4px;
-                    font-size: 16px;
-                    margin-top: 5px;
-                }
-
-                .registro-container .checkbox-container {
-                    display: flex;
-                    align-items: center;
-                    margin-top: 10px;
-                    flex-direction: column;
-                }
-
-                .registro-container input[type="checkbox"] {
-                    margin-right: 0;
-                    /* Cambia a 0 para alinear con el borde del contenedor */
-                }
-
-                .registro-container label[for="acepta_politicas"] {
-                    margin-top: 5px;
-                    /* Ajusta el margen superior según tus preferencias */
-                }
-
-                .registro-container button {
-                    width: 100%;
-                    padding: 10px;
-                    background-color: var(--third);
-                    color: var(--secondary);
-                    border: none;
-                    border-radius: 4px;
-                    font-size: 18px;
-                    cursor: pointer;
-                    transition: 0.2s;
-                    margin-top: 10px;
-                }
-
-                .registro-container button:hover {
-                    background-color: var(--third-disabled);
-                }
-
-                .registro-container .success-message,
-                .registro-container .error-message {
-                    color: white;
-                    padding: 10px;
-                    border-radius: 5px;
-                    margin-top: 10px;
-                    text-align: center;
-                }
-
-                .registro-container .success-message {
-                    background-color: green;
-                }
-
-                .registro-container .error-message {
-                    background-color: red;
-                }
-
-                .registro-container p {
-                    color: var(--secondary);
-                    text-align: center;
-                    margin-top: 10px;
-                }
-
-                .registro-container a {
-                    color: var(--secondary);
-                    font-weight: bold;
-                    text-decoration: none;
-                }
-
-                .registro-container a:hover {
-                    color: var(--o1);
-                }
-            </style>
+        <!-- Agrega un enlace o botón para dirigir a los usuarios a la página de inicio de sesión -->
+        <p>¿Ya tienes una cuenta? <a href="login.php">Inicia sesión aquí</a></p>
+    </div>
 </body>
 
 </html>

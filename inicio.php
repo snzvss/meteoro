@@ -53,6 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <link rel="icon" type="image/png" href="./img/logo.svg">
     <link rel="stylesheet" type="text/css" href="./css/coloring.css">
     <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <link rel="stylesheet" type="text/css" href="./css/inicio.css">
     <link rel="stylesheet" type="text/css" href="./css/txtformatting.css">
     <link rel="stylesheet" type="text/css" href="./css/shadow.css">
     <link rel="stylesheet" type="text/css" href="./css/loading.css">
