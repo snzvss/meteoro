@@ -68,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body class="on">
-<div class="overlay">
+<div class="overlay"></div>
     <main class="main">
         <div class="navbar">
             <div class="container">
@@ -114,7 +114,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </form>
 
         <?php
-        // Muestra mensajes de éxito o error después de procesar el formulario
+
         if (!empty($success_message)) {
             echo '<p class="success-message">' . $success_message . '</p>';
         } elseif (!empty($error_message)) {
@@ -122,9 +122,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         ?>
 
-        <!-- Agrega un enlace o botón para dirigir a los usuarios a la página de inicio de sesión -->
         <p>¿Ya tienes una cuenta? <a href="login.php">Inicia sesión aquí</a></p>
-    </div>
+    <style>
+        body {
+            background-image: url('./img/background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin: 0; /* Asegura que no haya márgenes en el cuerpo de la página */
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Color oscuro con opacidad del 50% */
+            z-index: -1; /* Coloca el overlay detrás del contenido */
+        }
+    </style>
 </body>
 
 </html>
