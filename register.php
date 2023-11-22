@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <head>
     <meta charset="utf-8">
-    <title>Registro - Mi Empresa Meteorológica</title>
+    <title>Registro - TempoTech</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="./img/logo.svg">
     <link rel="stylesheet" type="text/css" href="./css/coloring.css">
@@ -68,6 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body class="on">
+<div class="overlay">
     <main class="main">
         <div class="navbar">
             <div class="container">
@@ -89,7 +90,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </main>
     <div class="registro-container">
         <h1>Registro</h1>
-        <form method="post" action="<?php echo htmlspecialchars($_SERVER[" PHP_SELF"]); ?>">
+        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
             <label for="nombre">Nombre:</label>
             <input type="text" id="nombre" name="nombre" required>
 

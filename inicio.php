@@ -48,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <html lang="es">
 <head>
     <meta charset="utf-8">
-    <title>Dashboard - Mi Empresa Meteorológica</title>
+    <title>Dashboard - TempoTech</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="./img/logo.svg">
     <link rel="stylesheet" type="text/css" href="./css/coloring.css">

@@ -362,6 +362,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["buscar_usuarios"])) {
     </script>
     <script type="text/javascript" src="./js/script.js"></script>
 </body>
+
 <footer>
     <div class="features-box">
         <div class="container">

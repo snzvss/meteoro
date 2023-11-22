@@ -41,4 +41,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $response = "Método de solicitud no válido.";
     echo $response;
 }
+
 ?>

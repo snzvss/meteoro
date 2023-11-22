@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="utf-8">
     <title>Contactanos - TempoTech</title>
@@ -10,11 +11,16 @@
     <link rel="stylesheet" type="text/css" href="./css/txtformatting.css">
     <link rel="stylesheet" type="text/css" href="./css/shadow.css">
     <link rel="stylesheet" type="text/css" href="./css/loading.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+        integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
+
 <body class="on">
     <div class="loading" id="loading-box">
-        <div class="loading-item"><div class="loading-progress"></div></div>
+        <div class="loading-item">
+            <div class="loading-progress"></div>
+        </div>
     </div>
 
     <main class="main">
@@ -34,7 +40,8 @@
                         <div class="navs-item notbtn"><a href="mision.html" class="txt-uppercase">Misión</a></div>
                         <div class="navs-item notbtn"><a href="servicios.html" class="txt-uppercase">Servicios</a></div>
                         <div class="navs-item notbtn"><a href="contactar.html" class="txt-uppercase">Contactar</a></div>
-                        <div class="navs-item"><a href="login.php"><button class="btn txt-uppercase shadow-sm">Login</button></a></div>
+                        <div class="navs-item"><a href="login.php"><button
+                                    class="btn txt-uppercase shadow-sm">Login</button></a></div>
                     </div>
                 </div>
             </div>
@@ -48,11 +55,13 @@
                 <form id="contact-form" action="procesar_formulario.php" method="post">
                     <div class="form-group">
                         <label for="companyName">Nombre de la Compañía:</label>
-                        <input type="text" class="form-control" id="companyName" name="companyName" placeholder="Ingrese el nombre de la compañía" required>
+                        <input type="text" class="form-control" id="companyName" name="companyName"
+                            placeholder="Ingrese el nombre de la compañía" required>
                     </div>
                     <div class="form-group">
                         <label for="location">Correo:</label>
-                        <input type="text" class="form-control" id="location" name="location" placeholder="Ingrese la ubicación" required>
+                        <input type="text" class="form-control" id="location" name="location"
+                            placeholder="Ingrese la ubicación" required>
                     </div>
                     <div class="form-group">
                         <label for="contactType">Tipo de Consulta:</label>
@@ -71,34 +80,34 @@
                             <div class="success-message">Formulario enviado correctamente.</div>
                         </div>
                     </div>
-                                       
+
                 </form>
                 <div id="response-message"></div>
             </div>
         </div>
     </div>
-    
+
 
 
     <script type="text/javascript" src="./js/script.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             var form = document.getElementById("contact-form");
-    
-            form.addEventListener("submit", function(event) {
+
+            form.addEventListener("submit", function (event) {
                 event.preventDefault();
-    
+
                 var xhr = new XMLHttpRequest();
                 xhr.open("POST", "procesar_formulario.php", true);
                 xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    
+
                 var formData = new URLSearchParams(new FormData(form));
-    
-                xhr.onload = function() {
+
+                xhr.onload = function () {
                     console.log(xhr.responseText);
-    
+
                     var messageElement = document.getElementById("response-message");
-    
+
                     // Verifica si la respuesta contiene la cadena "correctamente"
                     if (xhr.responseText.toLowerCase().includes("correctamente")) {
                         // Muestra el mensaje de éxito
@@ -107,29 +116,31 @@
                         // Muestra un mensaje de error
                         messageElement.innerHTML = "<div class='error-message'>Error al enviar el formulario.</div>";
                     }
-    
+
                     // Limpia el mensaje después de 3 segundos
-                    setTimeout(function() {
+                    setTimeout(function () {
                         messageElement.innerHTML = "";
                     }, 3000);
                 };
-    
+
                 xhr.send(formData.toString());
             });
         });
     </script>
-    
-    
-    </body>
-    <footer>
-        <div class="features-box">
-            <div class="container">
-                <div class="footer-items">
-                    <div class="footer-item">
-                        <span>&copy; 2023 Desarrollado por Camilo Sanz y Jeyson Marañon - Todos los derechos reservados.</span>
-                    </div>
+
+
+</body>
+<footer>
+    <div class="features-box">
+        <div class="container">
+            <div class="footer-items">
+                <div class="footer-item">
+                    <span>&copy; 2023 Desarrollado por Camilo Sanz y Jeyson Marañon - Todos los derechos
+                        reservados.</span>
                 </div>
             </div>
         </div>
-    </footer>
+    </div>
+</footer>
+
 </html>
