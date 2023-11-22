@@ -26,10 +26,9 @@
     $stmt->bind_param("s", $correo);
     $stmt->execute();
     $stmt->bind_result($tipo_usuario, $hashed_password);
-    // Verifica si se encontró el usuario y la contraseña es correcta
+
     if ($stmt->fetch() && password_verify($contrasena, $hashed_password)) {
-    // Contraseña correcta, inicia sesión o realiza otras acciones necesarias
-    // Redirige al usuario según su tipo
+
     if ($tipo_usuario == "administrador" || $tipo_usuario == "usuario") {
     session_start();
     $_SESSION['usuario_autenticado'] = true;
@@ -73,6 +72,7 @@
 </head>
 
 <body class="on">
+    <div class="overlay"></div>
     <main class="main">
         <div class="navbar">
             <div class="container">
@@ -116,15 +116,32 @@
     }
     ?>
 
-                <!-- Agrega un enlace o botón para dirigir a los usuarios a la página de registro -->
+                
                 <p>¿No tienes una cuenta? <a href="register.php">Regístrate aquí</a></p>
             </div>
         </div>
     </div>
 
-    <!-- Agrega tus scripts JS aquí -->
     <style>
-        /* Agrega estos estilos en tu hoja de estilo personalizada (your-custom-login-styles.css) */
+        
+        body {
+            background-image: url('./img/background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin: 0; /* Asegura que no haya márgenes en el cuerpo de la página */
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Color oscuro con opacidad del 50% */
+            z-index: -1; /* Coloca el overlay detrás del contenido */
+        }
+
 
         .login-container {
             width: 35%;
